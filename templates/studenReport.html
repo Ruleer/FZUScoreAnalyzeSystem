@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>成绩报告-学生</title>
+</head>
+<link href="/static/css/base.css" rel="stylesheet">
+<link href="/static/css/head.css" rel="stylesheet">
+<link href="/static/js/OwlCarousel2/dist/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="/static/js/OwlCarousel2/dist/assets/owl.theme.default.min.css" rel="stylesheet">
+<link href="/static/js/responsive-nav.js/responsive-nav.css" rel="stylesheet">
+<link href="/static/js/tooltipste/dist/css/tooltipster.bundle.min.css" rel="stylesheet">
+<link href="/static/js/tooltipste/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet">
+<link href="/static/js/char/css/default.css" rel="stylesheet">
+<link href="/static/js/leftBar/css/nav.css" rel="stylesheet">
+<link href="/static/js/leftBar/fonts/iconfont.css" rel="stylesheet">
+<link href="/static/css/studentResult.css" rel="stylesheet">
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/js/responsive-nav.js/responsive-nav.min.js"></script>
+<script src="/static/js/OwlCarousel2/dist/owl.carousel.min.js"></script>
+<script src="/static/js/tooltipste/dist/js/tooltipster.bundle.min.js"></script>
+<script src="/static/js/char/js/Chart.min.js"></script>
+<script src="/static/js/leftBar/js/nav.js"></script>
+<body>
+
+    <nav class="navbar">
+        <div class="left">
+            <div class="imgContainer">
+                <img class="logo" src="/static/img/logo.png">
+            </div>
+            <h5>福大成绩通</h5>
+        </div>
+        <div class="right">
+            <img src="/static/img/user-fill(white).png" class="userPhoto">
+        </div>
+    </nav>
+
+    <div class="nav">
+        <div class="nav-top">
+            <div id="mini" style="border-bottom:1px solid rgba(255,255,255,.1)"><img src="/static/js/leftBar/images/mini.png" ></div>
+        </div>
+        <ul>
+            <li class="nav-item">
+                <a href="javascript:;"><i class="my-icon nav-icon icon_1"></i><span>成绩概览</span><i class="my-icon nav-more"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;"><i class="my-icon nav-icon icon_2"></i><span>学科分析</span><i class="my-icon nav-more"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;"><i class="my-icon nav-icon icon_3"></i><span>排名曲线</span><i class="my-icon nav-more"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;"><i class="my-icon nav-icon icon_3"></i><span>班长信息</span><i class="my-icon nav-more"></i></a>
+                <ul>
+                    <li><a href="javascript:;"><span>网站设置</span></a></li>
+                    <li><a href="javascript:;"><span>友情链接</span></a></li>
+                    <li><a href="javascript:;"><span>分类管理</span></a></li>
+                    <li><a href="javascript:;"><span>系统日志</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="section first">
+            <div class="container1">
+                <h3>总成绩</h3>
+                <div class="totalScore">
+                    <h2>100.00</h2>
+                    <canvas id="chart-area">
+                </div>
+            </div>
+        </div>
+    
+        <div class="section second">
+            <div class="container1">
+                <canvas id="subject"></canvas>
+            </div>
+        </div>
+
+        <div class="section third">
+            <div class="container1">
+                <div class="detail">
+                    <div class="num">
+                        <h4>你的班级排名：</h4>
+                        <h3>xx/xx</h3>
+                    </div>
+                    <div class="percent">
+                        <div class="stick">
+                            <div class="color">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section forth">
+            <div class="container1">
+                <h4>各科成绩与平均分</h4>
+                <canvas id="canvas1"></canvas>
+            </div>
+        </div>
+
+        <div class="section fifth">
+            <div class="container1">
+                <div class="adv">
+                    <div class="container1">
+                        <div class="top">
+                            <h5>优势科目</h5>
+                        </div>
+                        <div class="main">
+                            <div class="sbj">
+                                <h6>科目名</h6>
+                            </div>
+                            <div class="sbj">
+                                <h6>科目名</h6>
+                            </div>
+                            <div class="sbj">
+                                <h6>科目名</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="disAdv">
+                    <div class="container1">
+                        <div class="top">
+                            <h5>劣势科目</h5>
+                        </div>
+                        <div class="main">
+                            <div class="sbj">
+                                <h6>科目名</h6>
+                            </div>
+                            <div class="sbj">
+                                <h6>科目名</h6>
+                            </div>
+                            <div class="sbj">
+                                <h6>科目名</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section sixth">
+            <div class="container1">
+                <div class="right">
+                    <canvas id="line"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="section seventh">
+            <div class="container1">
+                <h4>你的排名</h4>
+                <div class="compare">
+                    <span>较上次</span>
+                    <span>进步了</span>
+                    <span class="num"> 5 </span>
+                    <span>名</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+<script>
+
+    //各科成绩
+    var barChartData = {
+		labels : ["科目","科目","科目","科目","科目","科目","科目"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				data : [60,60,60,60,60,60,60]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,0.8)",
+				highlightFill : "rgba(151,187,205,0.75)",
+				highlightStroke : "rgba(151,187,205,1)",
+				data : [80,80,80,80,80,80,80]
+			}
+		]
+
+	}
+
+    //总成绩
+    var doughnutData = [
+        {
+            value: 150,
+            color:"#F7464A",
+            highlight: "#FF5A5E",
+        },{
+            value: 450,
+            color: "#4D5360",
+            highlight: "#616774",
+        }
+    ];
+
+    //雷达图
+    var radarChartData = {
+		labels: ["a", "b", "c", "d", "e", "f"],
+		datasets: [{
+            label: "scoreAnalyze",
+            fillColor: "rgba(1,70,138,0.5)",
+            strokeColor: "rgba(1,70,138,0.6)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "rgba(1,70,138,0.6)",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(1,70,138,0.6)",
+            data: [65,88,90,76,56,99]
+ 
+		}]
+	};
+	
+    //排名统计
+    var lineChartData = {
+        labels : ["大一上","大一下"],
+        datasets : [{
+            label: "My First dataset",
+            fillColor : "rgba(220,220,220,0.2)",
+            strokeColor : "rgba(1,70,138,0.8)",
+            pointColor : "rgba(1,70,138,0.9)",
+            pointStrokeColor : "#fff",
+            pointHighlightFill : "#fff",
+            pointHighlightStroke : "rgba(220,220,220,1)",
+            data : [10,22]
+        }]
+    }
+
+    //总成绩
+    var ctx = document.getElementById("chart-area").getContext("2d");
+	window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
+        responsive : true
+    });
+
+    //各科成绩
+    var ctx = document.getElementById("canvas1").getContext("2d");
+    window.myBar = new Chart(ctx).Bar(barChartData, {
+        responsive : true
+    });
+
+    //雷达图
+    window.myRadar = new Chart(document.getElementById("subject").getContext("2d")).Radar(radarChartData,{
+        responsive: true,
+        pointLabelFontSize: 25,
+    });
+
+    //排名折线
+    var ctx = document.getElementById("line").getContext("2d");
+    window.myLine = new Chart(ctx).Line(lineChartData, {
+        responsive: true,
+        scaleFontSize : 25,
+    });
+
+    //$(".first").hide();
+    $(".second").hide();
+    //$(".third").hide();
+    //$(".forth").hide();
+    $(".fifth").hide();
+    $(".sixth").hide();
+    $(".seventh").hide();
+
+</script>
+
+</body>
+</html>

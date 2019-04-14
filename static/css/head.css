@@ -1,0 +1,88 @@
+.navbar{
+    display: flex;
+    position: fixed;
+    background:#263238;
+    height: 8vh;
+    width: 100%;
+    order: 3;
+    z-index: 2;
+    align-items: center;
+    box-shadow:0 2px 2px #2f3f46;
+}
+
+.navbar .left,
+.navbar .center,
+.navbar .right{
+    display: flex;
+}
+
+.navbar .left{
+    width: 20%;
+    height: 85%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.navbar .left .imgContainer{
+    display: flex;
+    height: 100%;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .left .logo{
+    display: flex;
+    height: 80%;
+}
+
+.navbar .left h5{
+    letter-spacing: 8px;
+    margin-left: 20px;
+    color: #abb1b7;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.navbar .center{
+    display: flex;
+    width: 60%;
+    height: 100%; 
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.navbar .center li{
+    display: flex;
+    height: 100%;
+    width: 25%;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+}
+
+.navbar .center li:hover{
+    background: #a4a4a4;
+}
+
+.navbar .center li a{
+    display: flex;
+    text-decoration: none;
+    letter-spacing: 5px;
+    color: #383838;
+}
+
+.navbar .right{
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.navbar .right .userPhoto{
+    display: flex;
+    height: 60%;
+    margin-right: 20px;
+}

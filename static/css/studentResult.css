@@ -1,0 +1,241 @@
+.nav{
+    margin-top: 8vh;
+    height: 92vh;
+    z-index: 1;
+}
+
+.container{
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.section{
+    display: flex;
+}
+
+.first{
+    width: 39%;
+    height: 40%;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 0;
+}
+
+.first:hover{
+    box-shadow: 0 0 10px 2px;
+}
+
+.container1{
+    flex-direction: column;
+}
+
+.first .totalScore{
+    display: flex;
+    position: relative;
+    height: 80%;
+    width: 100%;
+    align-items: center;
+}
+
+.first .totalScore #chart-area{
+    height: 120px;
+    width: 85%;
+    z-index: 0;
+}
+
+.first h3{
+    font-size: 30px;
+    margin: 0 0 0 0;
+}
+
+.first .totalScore h2{
+    position: relative;
+    left: 50px;
+    color: #263238;
+    font-size: 25px;
+    z-index: 1;
+}
+
+.second{
+    display: flex;
+    height: 100%;
+    width: 54%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.second .container1{
+    justify-content: center;
+    align-items: center;
+}
+
+.second .subject{
+    height: 1000px;
+}
+
+.third{
+    height: 40%;
+    width: 59%;
+    margin-right: 2vh;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.third .detail{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.third .num{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.third .num h4{
+    font-size: 30px;
+    margin: 0 0 0 0;
+}
+
+.third .num h3{
+    font-size: 20px;
+    margin: 0 0 0 0;
+}
+
+.third .percent{
+    display: flex;
+    width: 100%;
+    height: 89%;
+    align-items: center;
+    justify-content: center;
+}
+
+.third .percent .stick{
+    display: flex;
+    height: 20%;
+    width: 90%;
+    border: 1px  black solid;
+    flex-direction: column-reverse;
+}
+
+.third .percent .stick .color{
+    height: 100%;
+    width: 60%;
+}
+
+.forth{
+    display: flex;
+    width: 100%;
+    height: 56%;
+    margin-right: 2vh;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.forth .container1{
+    flex-direction: column;
+    align-items: center;
+}
+
+.forth h4{
+    font-size: 30px;
+    margin: 0 0 5px 0;
+}
+
+.forth #canvas1{
+    width: 90%;
+    height: 80%;
+}
+
+.fifth{
+    width: 44%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fifth .container1{
+    height: 100%;
+    justify-content: space-between;
+}
+
+.fifth .adv,
+.fifth .disAdv{
+    display: flex;
+    width: 100%;
+    height: 49%;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.fifth .main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fifth .main{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.sixth{
+    width: 49%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.sixth .container1{
+    justify-content: center;
+    align-items: center;
+}
+
+.sixth #line{
+    width: 100%;
+}
+
+.seventh{
+    width: 49%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: white;
+}
+
+.seventh .container1{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.seventh .compare{
+    width: 100%;
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.seventh h4{
+    margin:  0 0 0 0;
+    font-size: 30px;
+}
+
+.seventh .compare .num{
+    font-size: 50px
+}
+

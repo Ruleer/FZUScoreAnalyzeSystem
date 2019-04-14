@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="stylesheet" href="/static/js/jBox/dist/jBox.all.min.css">
+    <title>用户登入</title>
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/myCookie.js"></script>
+    <script src="/static/js/jBox/dist/jBox.all.min.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="container-a">
+            <div class="top">
+                <img src="/static/img/100x100.png" class="logo">
+                <h1 class="name">NAME</h1>
+            </div>
+        </div>
+        <div class="container-b">
+        <div class="middle">
+            <div class="login log">
+                <div class="title">用户登入</div>
+                    <div class="input-1">
+                        <input class="username" placeholder="账号" value="">
+                    </div>
+                    <div class="input-2">
+                        <input class="password" type="password" placeholder="密码" value="">
+                    </div>
+                    <button type="submit" class="btn" value="登入">登入</button>
+                    <a href="/register.html" class="register">立即注册</a>
+                </div>
+            </div>
+        </div>  
+    </div>
+    <script>
+        //主页显示
+        var logo = $(".logo");
+        logo.on("mouseover",function(){
+            $(".logo")[0].src = "/static/img/100x100(2).png";
+        })
+        logo.on("mouseout",function(){
+            $(".logo")[0].src = "/static/img/100x100.png";
+        })
+
+        //回主页
+        logo[0].onclick = function (){
+            window.location.href = "/main.html";
+        }
+
+        //登入部分
+        window.onload = function(ev){
+        //console.log($(".btn"));
+        $(".btn").click(function(){
+            var name = $(".username").val();
+            var password = $(".password").val();
+            //console.log(name);
+            if(name===""){
+                new jBox('Notice', {
+                    content: "用户名不能为空！",
+                    color: 'red'
+                });
+                return;
+            }
+            if(password===""){
+                new jBox('Notice', {
+                    content: "密码不能为空！",
+                    color: 'red'
+                });
+                return;
+            }
+            $.ajax({
+                url : "php_files/logincheck.php",
+                data :　"username="+name+"&password="+password,
+                type : "GET",
+                success : function (msg) {
+                    //alert(msg);
+                    if(msg === "success")
+                    {
+                        addCookie("username",name,5);
+                        window.location.href = "/main.html";
+                    }else if(msg === name)
+                    {
+                        addCookie("username",name,5);
+                        window.location.href = "/main.html";
+                    }else{
+                        alert(msg);
+                    }
+                },
+                error : function (param) {
+                    alert(param.status);
+                }
+            })
+        }
+        )
+        }
+        
+    </script>
+</body>
+</html>

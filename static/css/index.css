@@ -1,0 +1,176 @@
+.firBlock,
+.secBlock,
+.thiBlock,
+.forBlock{
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+.firBlock{
+    height: 350px;
+    top: 16vh;
+    justify-content: center;
+    z-index: 1;
+}
+
+.firBlock .container{
+    justify-content: space-between;
+}
+
+.firBlock .secContainer{
+    display: flex;
+    height: 100%;
+    width: 80%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.firBlock .resent,
+.firBlock .userIfo{
+    display: flex;
+    height: 100%;
+    background-color: white;
+    justify-content: center;
+}
+
+.firBlock .resent{
+    width: 79%;
+}
+
+.firBlock .resent .head,
+.firBlock .resent .bottom{
+    width: 100%;
+}
+
+.firBlock .userIfo{
+    width: 19%; 
+}
+
+.firBlock .userIfo .head{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: center;
+}
+
+.firBlock .userIfo .head img{
+    height: 100%;
+}
+
+.firBlock .userIfo .body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.thiBlock{ 
+    top: 27vh;
+    height: 500px;
+}
+
+.thiBlock .container{
+    justify-content: space-between;
+}
+
+.thiBlock .left{
+    display: flex;
+    height: 100%;
+    width: 40%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    background: #b4b4b4;
+}
+
+.thiBlock .left .title,
+.thiBlock .left .choice{
+    margin-left: 50px;
+}
+
+.thiBlock .left .choice{
+    display: flex;
+    position: relative;
+    top: 30px;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.thiBlock .left .select{
+    width: 70%;
+}
+
+.thiBlock .left select{
+    width: 100%;
+}
+
+.thiBlock .left .btn{
+    width: 20%;
+}
+
+.thiBlock .right{
+    height: 100%;
+    width: 60%;
+}
+
+.thiBlock .right img{
+    height: 100%;
+    width: 100%;
+}
+
+.forBlock{
+    top: 33vh;
+    height: 500px;
+}
+
+.forBlock .container{
+    justify-content: space-between;
+}
+
+.forBlock .left{
+    height: 100%;
+    width: 60%;
+}
+
+.forBlock .left img{
+    height: 100%;
+    width: 100%;
+}
+
+.forBlock .right{
+    display: flex;
+    height: 100%;
+    width: 40%;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    background: #b4b4b4;
+}
+
+.forBlock .right .title,
+.forBlock .right .choice{
+    text-align: right;
+    margin-right: 50px;
+}
+
+.forBlock .right .choice{
+    display: flex;
+    position: relative;
+    top: 30px;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.forBlock .right .select{
+    width: 70%;
+}
+
+.forBlock .right select{
+    width: 100%;
+}
+
+.forBlock .right .btn{
+    width: 20%;
+}
+
