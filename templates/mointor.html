@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>成绩报告-学生</title>
+</head>
+<link href="/static/css/base.css" rel="stylesheet">
+<link href="/static/css/head.css" rel="stylesheet">
+<link href="/static/js/OwlCarousel2/dist/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="/static/js/OwlCarousel2/dist/assets/owl.theme.default.min.css" rel="stylesheet">
+<link href="/static/js/responsive-nav.js/responsive-nav.css" rel="stylesheet">
+<link href="/static/js/tooltipste/dist/css/tooltipster.bundle.min.css" rel="stylesheet">
+<link href="/static/js/tooltipste/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet">
+<link href="/static/js/char/css/default.css" rel="stylesheet">
+<link href="/static/js/leftBar/css/nav.css" rel="stylesheet">
+<link href="/static/js/leftBar/fonts/iconfont.css" rel="stylesheet">
+<link href="/static/js/select/css/customSelect.jquery.css" rel="stylesheet">
+<link href="/static/js/stickSelect/css/selectpage.css" rel="stylesheet">
+<link href="/static/js/stickySort/css/stickysort.css" media="all" rel="stylesheet">
+<link href="/static/css/mointor.css" rel="stylesheet">
+<script src="/static/js/jquery-1.11.0.min.js"></script>
+<script src="/static/js/responsive-nav.js/responsive-nav.min.js"></script>
+<script src="/static/js/OwlCarousel2/dist/owl.carousel.min.js"></script>
+<script src="/static/js/tooltipste/dist/js/tooltipster.bundle.min.js"></script>
+<script src="/static/js/char/js/Chart.min.js"></script>
+<script src="/static/js/leftBar/js/nav.js"></script>
+<script src="/static/js/select/js/customSelect.jquery.min.js"></script>
+<script src="/static/js/stickSelect/js/selectpage.min.js"></script>
+<script src="/static/js/stickySort/js/jquery.stickysort.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+<script src="/static/js/myCookie.js"></script>
+<body>
+
+    <nav class="navbar">
+        <div class="left">
+            <div class="imgContainer">
+                <img class="logo" src="/static/img/logo.png">
+            </div>
+            <h5>福大成绩通</h5>
+        </div>
+        <div class="right">
+            <img src="/static/img/user-fill(white).png" class="userPhoto">
+        </div>
+        <div class="userIfo">
+            <h1>xxx</h1>
+            <h3>学院专业</h3>
+            <h2>2218013xx</h2>
+            <button class="logOut">退出</button>
+        </div>
+    </nav>
+
+    <div class="nav">
+        <div class="nav-top">
+            <input type="hidden" id="countrySelect" value=""/>
+        </div>
+        <ul>
+            <li class="nav-item">
+                <a href="javascript:;"><i class="my-icon nav-icon icon_1"></i><span>班级概览</span><i class="my-icon nav-more"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;"><i class="my-icon nav-icon icon_2"></i><span>成绩汇总</span><i class="my-icon nav-more"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;"><i class="my-icon nav-icon icon_3"></i><span>个人报告</span><i class="my-icon nav-more"></i></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+
+        <div class="firBlock">
+            <h1 class="title">科目</h1>
+            <div class="sth owl-carousel">
+                <button class="sbj">班级总成绩</button>
+            </div>
+        </div>
+
+        <div class="container1">
+
+            <div class="section secBlock">
+                <div class="chart">
+                    <canvas id="chart-area">
+                </div>
+                <div class="text">
+                    <h2>优秀率</h2>
+                    <span>00.00%</span>
+                    <h2>及格率</h2>
+                    <span>00.00%</span>
+                </div>
+            </div>
+
+            <div class="thiBlock">
+                <div class="section num">
+                    <div class="part max">
+                        <h3>最高分</h3>
+                        <span>00</span>
+                    </div>
+                    <div class="part ave">
+                        <h3>平均分</h3>
+                        <span>00.00</span>
+                    </div>
+                    <div class="part min">
+                        <h3>最低分</h3>
+                        <span>00</span>
+                    </div>
+                </div>
+
+                <div class="section percent">
+
+                    <div class="left">
+                        <h3>优秀</h3>
+                        <span>0</span>
+                        <h3>良好</h3>
+                        <span>0</span>
+                        <h3>及格</h3>
+                        <span>0</span>
+                        <h3>不及格</h3>
+                        <span>0</span>
+                    </div>
+
+                    <div class="right">
+                        <canvas id="canvas1" width="650" height="900"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section container2">
+            <div class="forBlock">
+                <div class="title">
+                    <h2>班级总成绩</h2>
+                    <span>成绩总览>总成绩</span>
+                </div>
+            </div>
+    
+            <div class="fifBlock">
+                <table id="test">
+                    <thead>
+                        <tr>
+                            <th>学号</th>
+                            <th>姓名</th>
+                            <th>排名</th>
+                            <th>成绩</th>
+                            <!-- add more <th> as of when needed -->
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                    <tbody>
+                        
+                        <!-- add more rows as of when needed -->
+                    </tbody>
+                </table>    
+            </div>
+        </div>
+
+        
+
+<script>
+    var term = $('input#countrySelect')[0].value;
+    if(term === "")
+        term = "1";
+    var id = searchCookie("id");
+    var sbj = "班级总成绩";
+    
+    //第一页数据展示
+    function addAnalyze(response) {
+        console.log(response);
+        var passing = parseFloat(response.class_detail_case.rate_of_passing) ;
+        var excellent = parseFloat(response.class_detail_case.rate_of_excellent) ;
+        var scoreLine = [parseInt(response.subject_score_line.no_passing),parseInt(response.subject_score_line.passing),parseInt(response.subject_score_line.good),parseInt(response.subject_score_line.excellent)];
+        //成绩比例
+        $(".secBlock .text span")[0].innerHTML = excellent;
+        $(".secBlock .text span")[1].innerHTML = passing;
+        //总成绩
+        var doughnutData = [
+            {
+                value: excellent,
+                label: "优秀率",
+                color:"#F7464A",
+                highlight: "#FF5A5E",
+            },{
+                value: passing,
+                label: "及格率",
+                color: "#4D5360",
+                highlight: "#616774",
+            }
+        ];
+
+        //总成绩
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
+            responsive : true
+        });
+
+        //最值
+        $(".thiBlock .max span").text(response.class_detail_case.max);
+        $(".thiBlock .ave span").text(response.class_detail_case.average);
+        $(".thiBlock .min span").text(response.class_detail_case.min);
+
+        //成绩分区人数
+        $(".thiBlock .percent .left span")[0].innerHTML = response.subject_score_line.excellent;
+        $(".thiBlock .percent .left span")[1].innerHTML = response.subject_score_line.good;
+        $(".thiBlock .percent .left span")[2].innerHTML = response.subject_score_line.passing;
+        $(".thiBlock .percent .left span")[3].innerHTML = response.subject_score_line.no_passing;
+        
+
+        //柱状图体现成绩分布
+        var barChartData = {
+            labels : ["不及格","及格","良好","优秀"],
+            datasets : [
+                {
+                    fillColor : "#F7464A",
+                    strokeColor : "#F7464A",
+                    highlightFill: "#FF5A5E",
+                    highlightStroke: "#FF5A5E",
+                    data : scoreLine,
+                },
+            ]
+        }
+
+        var ctx = document.getElementById("canvas1").getContext("2d");
+        window.myBar = new Chart(ctx).Bar(barChartData, {
+            responsive : true
+        });
+    }
+    function getAnalyze(id,term,sbj) {
+        $.ajax({
+            type: "get",
+            url: "/self",
+            data: {
+                "username":id,
+                "term":term,
+                "parameter":"subject_score_line",
+                "subject":sbj
+            },
+            success: function (response) {
+                console.log("success");
+                addAnalyze(response);
+            },
+            error:function(xml){
+                console.log(xml.status);
+            }
+        });
+    };
+        
+    //第二页数据展示
+    function addAll(response) {
+        $(".forBlock .title h2").text(sbj);
+        $(".forBlock .title span").text("成绩总览>"+sbj);
+        $("#test tbody").empty();
+        for(var i=0;i<response.length;i++){
+            //console.log(response[i]);
+            
+            var th = $("<th></th>").text(response[i][0]);
+            var td1 = $("<td></td>").text(response[i][1]);
+            var td2 = $("<td></td>").text(i+1);
+            var td3 = $("<td></td>").text(response[i][2]);
+            var tr = $("<tr></tr>");
+            tr.append(th);
+            tr.append(td1);
+            tr.append(td2);
+            tr.append(td3);
+            $("#test tbody").append(tr);
+        }
+        //var tr = $("<th></th>").text();
+        //$("#test tbody")
+    };
+    function getAll(id,term,sbj) {
+        if(sbj === "班级总成绩"){
+            $.ajax({
+                type: "get",
+                url: "/self",
+                data: {
+                    "username":id,
+                    "term":term,
+                    "parameter":"class_total_case",
+                },
+                success: function (response) {
+                    addAll(response);
+                },
+                error:function(xml){
+                    console.log(xml.status);
+                }
+            });
+        }else{
+            $.ajax({
+                type: "get",
+                url: "/self",
+                data: {
+                    "username":id,
+                    "term":term,
+                    "subject":sbj,
+                    "parameter":"single_score_class",
+                },
+                success: function (response) {
+                    addAll(response);
+                },
+                error:function(xml){
+                    console.log(xml.status);
+                }
+            });
+        }
+    }
+
+    //详细用户信息
+    var userIfo = $(".userIfo");
+    //设置位置
+    userIfo.css("left",window.innerWidth-330);
+    userIfo.hide();
+    //移入显示
+    var userHead = $(".navbar .right img");
+    userHead.mouseenter(function () { 
+        userIfo.slideDown();
+        userHead.attr("src","/static/img/user-fill(white).png");
+    });
+    //移除隐藏
+    $(".container").mouseenter(function(){
+        userIfo.slideUp();
+        userHead.attr("src","/static/img/user-line(white).png");
+    })
+
+    $(".container2").hide();
+
+
+    //加载考试列表
+    $.customSelect({
+        identifier: 'demo',
+        selector: '#countrySelect',
+        placeholder: '大一上学期',
+        options: [
+            ['1', "", '大一上学期'],
+            ['2', "", '大一下学期'],
+            ['3', "", '大二上学期'],
+            ['4', "", '大二下学期'],
+            ['5', "", '大三上学期'],
+            ['6', "", '大三下学期'],
+            ['7', "", '大四上学期'],
+            ['8', "", '大四下学期']
+        ],
+        template: "<div class='jqcs_option' data-select-value='$0' style='background-image:url($1);'>$2</div>"
+    });
+
+
+    //获取用户信息
+    $.ajax({
+        type:"get",
+        url:"/studentself",
+        data:{
+            "username":id,
+        },
+        success:function(msg){
+    
+            //是否班长显示内容不同
+            if(msg[0] === 1){
+                
+            }else{
+                window.location.href = "/enterSelf";
+            };
+            
+            
+            //显示用户信息
+            $(".userIfo h1").text(msg[1].message[0][1]);
+            $(".userIfo h3").text(msg[1].message[0][2]);
+            $(".userIfo h2").text(msg[1].message[0][0]);
+            
+            //年段不同显示不同数量的考试
+            for(var i=8;i>=msg[2];i--){
+                $($(".jqcs_option")[i]).remove();
+            };
+
+            //选择科目
+            $.ajax({
+                type: "get",
+                url: "/self",
+                data: {
+                    "username":id,
+                    "term":term,
+                    "parameter":"detail_of_subject",
+                },
+                success: function (response) {
+                    console.log(response);
+                    sbj = response[0];
+                    for(var i=0;i<Object.keys(response).length;i++){
+                        var btn = $("<button></button>").addClass("sbj").text(response[i]);
+                        $(".sth").append(btn);
+                    }
+                    //选择科目
+                    $(".firBlock .owl-carousel").owlCarousel({
+                        items : 5,
+                        margin : 30,
+                        loop : false,
+                    });
+                    //默认
+                    getAnalyze(id,term,sbj);
+                    $($(".sbj")[0]).css({"background-color":"#565656","color":"#6f6f6f"});
+                    //科目点击
+                    $($(".sth .sbj")[0]).toggleClass("sbjfocus");
+                    $(".sth .sbj").click(function(){
+                        $(".sth .sbj").removeClass("sbjfocus");
+                        $(this).toggleClass("sbjfocus");
+                        sbj = $(this).text();
+                        term = $('input#countrySelect')[0].value;
+                        if(term === "")
+                            term = "1";
+                        //选择学期后请求总成绩
+                        //console.log(sbj);
+                        if($(".sectionSel").children().children()[1].innerHTML === "班级概览")
+                            getAnalyze(id,term,sbj);
+                        else if($(".sectionSel").children().children()[1].innerHTML === "成绩汇总")
+                            getAll(id,term,sbj);
+                    });
+                    //学期点击
+                    $(".jqcs_option").click(function(){
+                        //console.log($(this).attr("data-select-value"));
+                        term = $(this).attr("data-select-value");
+                        //科目更新
+                        $.ajax({
+                            type: "get",
+                            url: "/self",
+                            data: {
+                                "username":id,
+                                "term":term,
+                                "parameter":"detail_of_subject",
+                            },
+                            success:function(response){
+                                console.log($(".sth .sbj"));
+                                sbj = response[0];
+                                for(var i=0;i<Object.keys(response).length;i++){
+                                    $(".sbj")[i+1].innerHTML = response[i];
+                                };
+                                $(".firBlock .owl-carousel").owlCarousel({
+                                    items : 5,
+                                    margin : 30,
+                                    loop : false,
+                                });
+                                //选择学期后请求总成绩
+                                //console.log($(".sectionSel").children().children()[1].innerHTML);
+                                if($(".sectionSel").children().children()[1].innerHTML === "班级概览")
+                                    getAnalyze(id,term,sbj);
+                                else if($(".sectionSel").children().children()[1].innerHTML === "成绩汇总")
+                                    getAll(id,term,sbj);
+                            },
+                            error:function(xml){
+                                console.log(xml.status);
+                            }
+                        })
+                        
+                    });
+                    //退出
+                    $(".logOut").click(function(){
+                        $.ajax({
+                            type: "get",
+                            url: "/self",
+                            data: {
+                                "username":id,
+                                "status":"201",
+                            },
+                            success: function (response) {
+                                console.log(response);
+                                if(response === "success"){
+                                    window.location.href = "/";
+                                };
+                            },
+                            error:function(xml){
+                                console.log(xml.status);
+                            }
+                        });
+                    })
+                },
+                error:function(xml){
+                    console.log(xml.status);
+                }
+            })
+        },
+        error:function(xml){
+            console.log(xml.status);
+        }
+    });
+
+
+
+    //点击切换
+    var page = $(".nav-item");
+    console.log(page[1]);
+    $(page[0]).addClass("sectionSel");
+    //班级概况
+    $(page[0]).click(function(){
+        page.removeClass("sectionSel");
+        $(page[0]).addClass("sectionSel");
+        $(".container1").fadeIn(300);
+        $(".container2").hide();
+        page.css("background-color","#263238");
+        page.find("a").css("color","#ABB1B7");
+        $(page[0]).css("background-color","rgba(255,255,255,.1)");
+        $(page[0]).find("a").css("color","white");
+        getAnalyze(id,term,sbj);
+    });
+    //成绩汇总
+    $(page[1]).click(function(){
+        $($(".sbj")[0]).css({"background-color":"","color":""});
+        page.removeClass("sectionSel");
+        $(page[1]).addClass("sectionSel");
+        $(".container1").hide();
+        $(".container2").fadeIn(300);
+        page.css("background-color","#263238");
+        page.find("a").css("color","#ABB1B7");
+        $(page[1]).css("background-color","rgba(255,255,255,.1)");
+        $(page[1]).find("a").css("color","white");
+        var term = $('input#countrySelect')[0].value;
+        if(term === "")
+            term = "1";
+        sbj = $(".sbjfocus").text();
+        console.log(sbj);
+        getAll(id,term,sbj);
+    });
+    
+    //console.log(page[3]);
+    $(page[2]).click(function(){
+        window.location.href = "/enterSelf";
+    })
+
+    
+</script>
+</body>
+</html>

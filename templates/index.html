@@ -14,92 +14,51 @@
 <link href="/static/js/tooltipste/dist/css/tooltipster.bundle.min.css" rel="stylesheet">
 <link href="/static/js/tooltipste/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet">
 <link href="/static/js/select/css/customSelect.jquery.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/js/jBox/dist/jBox.all.min.css">
 <link href="/static/css/index.css" rel="stylesheet">
 <script src="/static/js/jquery-3.3.1.min.js"></script>
 <script src="/static/js/responsive-nav.js/responsive-nav.min.js"></script>
 <script src="/static/js/OwlCarousel2/dist/owl.carousel.min.js"></script>
 <script src="/static/js/tooltipste/dist/js/tooltipster.bundle.min.js"></script>
 <script src="/static/js/select/js/customSelect.jquery.min.js"></script>
+<script src="/static/js/jBox/dist/jBox.all.min.js"></script>
+<script src="/static/js/myCookie.js"></script>
 <body>
   <nav class="navbar">
-    <div class="container">
-      <div class="left">
-          <img class="logo" src="/static/img/logo.png">
+    <div class="left">
+      <div class="imgContainer">
+        <img class="logo" src="/static/img/logo.png">
       </div>
-      <div class="right">
-          <img src="/static/img/user-fill.svg" class="userPhoto">
-      </div>
+      <h5>福大成绩通</h5>
+    </div>
+    <div class="right">
+      <img src="/static/img/user-fill(white).png" class="userPhoto">
     </div>
   </nav>
 
-  <div class="firBlock">
-    <div class="container">
-       <div class="resent">
-          <div class="secContainer">
-            <div class="head">
-              <h1>xx学年成绩报告</h1>
-            </div>
-            <div class="bottom">
-              <h2>查看报告</h2>
-            </div>
-          </div>
-        </div>
-      
-        <div class="userIfo">
-          <div class="secContainer">
-            <div class="head">
-              <img src="/static/img/user-line.svg">
-            </div>
-            <div class="body">
-              <h2>用户名</h2>
-              <h3>学院</h3>
-              <span>xxxx界专业班级</span>
-              <h4>学号xxxxxxxx</h4>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
-
-  <div class="thiBlock">
-    <div class="container">
-      <div class="left">
-        <h2 class="title">历次成绩报告</h2>
-        <div class="choice">
-          <div class="select">
-            <select id="single" class="form-control form-control-chosen" data-placeholder="请选择要查看的考试">
-              <option>第一学期</option>
-              <option>第二学期</option>
-            </select>
-          </div>
-          <button class="btn">查看</button>
-        </div>
+  <div class="main">
+    <div class="mask">
+      <div class="welcome">
+        <h1>欢迎使用福大成绩通</h1>
+        <button class="start">点此开始</button>
       </div>
-      <div class="right">
-        <img class="img" src="/static/img/600x400.png">
+    </div>
+  
+    <div class="logWindow">
+      <div class="login log">
+        <div class="title">用户登入</div>
+            <div class="input-1">
+                <input class="username" placeholder="账号" value="">
+            </div>
+            <div class="input-2">
+                <input class="password" type="password" placeholder="密码" value="">
+            </div>
+            <button type="submit" class="btn" value="登入">登入</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="forBlock">
-    <div class="container">
-      <div class="left">
-          <img class="img" src="/static/img/600x400.png">
-      </div>
-      <div class="right">
-        <h2 class="title">班级报告</h2>
-        <div class="choice">
-            <div class="select">
-              <select id="single" class="form-control form-control-chosen" data-placeholder="请选择要查看的考试">
-                <option>第一学期</option>
-                <option>第二学期</option>
-              </select>
-            </div>
-            <button class="btn">查看</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <script>
     /*
     $.ajax({
@@ -109,8 +68,98 @@
       }
     });
     */
-    //选择框
+    //开始隐藏
+    $(".logWindow").hide();
+
+    $(".start").click(function(){
+      $(".mask h1").fadeOut();
+      $(".start").fadeOut();
+      $(".mask").animate(
+        {
+          width: "70%",
+        },
+        500,
+        function(){
+          $(".logWindow").fadeIn();
+        }
+      )
+    })
+
+    $(".logWindow .btn").click(function(){
+      var username = $(".username").val();
+      var password = $(".password").val();
+      //console.log(name);
+      if(username===""){
+          new jBox('Notice', {
+              content: "用户名不能为空！",
+              color: 'red',
+              attributes: {
+                x: 'left',
+                y: 'bottom'
+              },
+          });
+          $("input").val("");
+          return;
+      }
+      if(password===""){
+          new jBox('Notice', {
+              content: "密码不能为空！",
+              color: 'red',
+              attributes: {
+                x: 'left',
+                y: 'bottom'
+              },
+          });
+          $("input").val("");
+          return;
+      }
+      console.log(username);
+      console.log(password);
+      $.ajax({
+        type: "post",
+        url: "/login",
+        data: {
+          "username":username,
+          "password":password,
+          "status":"200"
+        },
+        success: function (response) {
+          if(response === "202"){
+            new jBox('Notice', {
+                content: "账号或密码输入错误，请重试",
+                color: 'red',
+                attributes: {
+                  x: 'left',
+                  y: 'bottom'
+                },
+            });
+            $("input").val("");
+          }
+          else if(response === username){
+            $(".logWindow").fadeOut();
+            $(".mask").animate(
+            {
+              width: "220px",
+            },
+            500);
+            addCookie("id",response,5);
+            window.location.href = "/enterSelf";
+          }
+          else 
+            alert("错误，请重试")
+        },
+        error:function(xml){
+          console.log(xml.status);
+          alert("未知错误，请联系管理员，错误码："+xml.status);
+        }
+      });
+      
+      
+      
+    })
     
+
+
   </script>
 </body>
 </html>

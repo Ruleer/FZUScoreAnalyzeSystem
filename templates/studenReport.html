@@ -16,13 +16,17 @@
 <link href="/static/js/char/css/default.css" rel="stylesheet">
 <link href="/static/js/leftBar/css/nav.css" rel="stylesheet">
 <link href="/static/js/leftBar/fonts/iconfont.css" rel="stylesheet">
+<link href="/static/js/select/css/customSelect.jquery.css" rel="stylesheet">
 <link href="/static/css/studentResult.css" rel="stylesheet">
-<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/js/jquery-1.11.0.min.js"></script>
 <script src="/static/js/responsive-nav.js/responsive-nav.min.js"></script>
 <script src="/static/js/OwlCarousel2/dist/owl.carousel.min.js"></script>
 <script src="/static/js/tooltipste/dist/js/tooltipster.bundle.min.js"></script>
 <script src="/static/js/char/js/Chart.min.js"></script>
 <script src="/static/js/leftBar/js/nav.js"></script>
+<script src="/static/js/select/js/customSelect.jquery.min.js"></script>
+<script src="/static/js/myCookie.js"></script>
+<script src="/static/js/getStatus.js"></script>
 <body>
 
     <nav class="navbar">
@@ -33,13 +37,19 @@
             <h5>福大成绩通</h5>
         </div>
         <div class="right">
-            <img src="/static/img/user-fill(white).png" class="userPhoto">
+            <img src="/static/img/user-line(white).png" class="userPhoto">
+        </div>
+        <div class="userIfo">
+            <h1>xxx</h1>
+            <h3>学院专业</h3>
+            <h2>2218013xx</h2>
+            <button class="logOut">退出</button>
         </div>
     </nav>
 
     <div class="nav">
         <div class="nav-top">
-            <div id="mini" style="border-bottom:1px solid rgba(255,255,255,.1)"><img src="/static/js/leftBar/images/mini.png" ></div>
+            <input type="hidden" id="countrySelect" value=""/>
         </div>
         <ul>
             <li class="nav-item">
@@ -53,12 +63,6 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:;"><i class="my-icon nav-icon icon_3"></i><span>班长信息</span><i class="my-icon nav-more"></i></a>
-                <ul>
-                    <li><a href="javascript:;"><span>网站设置</span></a></li>
-                    <li><a href="javascript:;"><span>友情链接</span></a></li>
-                    <li><a href="javascript:;"><span>分类管理</span></a></li>
-                    <li><a href="javascript:;"><span>系统日志</span></a></li>
-                </ul>
             </li>
         </ul>
     </div>
@@ -68,7 +72,7 @@
             <div class="container1">
                 <h3>总成绩</h3>
                 <div class="totalScore">
-                    <h2>100.00</h2>
+                    <h2>000</h2>
                     <canvas id="chart-area">
                 </div>
             </div>
@@ -85,7 +89,7 @@
                 <div class="detail">
                     <div class="num">
                         <h4>你的班级排名：</h4>
-                        <h3>xx/xx</h3>
+                        <h3>2/30</h3>
                     </div>
                     <div class="percent">
                         <div class="stick">
@@ -104,9 +108,9 @@
             </div>
         </div>
 
-        <div class="section fifth">
+        <div class="section1 fifth">
             <div class="container1">
-                <div class="adv">
+                <div class="section adv">
                     <div class="container1">
                         <div class="top">
                             <h5>优势科目</h5>
@@ -118,21 +122,15 @@
                             <div class="sbj">
                                 <h6>科目名</h6>
                             </div>
-                            <div class="sbj">
-                                <h6>科目名</h6>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="disAdv">
+                <div class="section disAdv">
                     <div class="container1">
                         <div class="top">
                             <h5>劣势科目</h5>
                         </div>
                         <div class="main">
-                            <div class="sbj">
-                                <h6>科目名</h6>
-                            </div>
                             <div class="sbj">
                                 <h6>科目名</h6>
                             </div>
@@ -148,7 +146,7 @@
         <div class="section sixth">
             <div class="container1">
                 <div class="right">
-                    <canvas id="line"></canvas>
+                    <canvas id="line" width="600" height="600"></canvas>
                 </div>
             </div>
         </div>
@@ -158,8 +156,8 @@
                 <h4>你的排名</h4>
                 <div class="compare">
                     <span>较上次</span>
-                    <span>进步了</span>
-                    <span class="num"> 5 </span>
+                    <span class="type">进步</span>
+                    <span class="num"> t </span>
                     <span>名</span>
                 </div>
             </div>
@@ -167,108 +165,403 @@
     </div>
 
 
-    
-
 <script>
+    var term = "1";
+    var id = searchCookie("id");
 
-    //各科成绩
-    var barChartData = {
-		labels : ["科目","科目","科目","科目","科目","科目","科目"],
-		datasets : [
-			{
-				fillColor : "rgba(220,220,220,0.5)",
-				strokeColor : "rgba(220,220,220,0.8)",
-				highlightFill: "rgba(220,220,220,0.75)",
-				highlightStroke: "rgba(220,220,220,1)",
-				data : [60,60,60,60,60,60,60]
-			},
-			{
-				fillColor : "rgba(151,187,205,0.5)",
-				strokeColor : "rgba(151,187,205,0.8)",
-				highlightFill : "rgba(151,187,205,0.75)",
-				highlightStroke : "rgba(151,187,205,1)",
-				data : [80,80,80,80,80,80,80]
-			}
-		]
 
-	}
 
-    //总成绩
-    var doughnutData = [
-        {
-            value: 150,
-            color:"#F7464A",
-            highlight: "#FF5A5E",
-        },{
-            value: 450,
-            color: "#4D5360",
-            highlight: "#616774",
+    //成绩概览
+    function addTotalScore(msg) {
+        var total = parseInt(msg[0].datadetail.report.length)*100;
+        console.log(msg);
+        var userScore = parseInt(msg[0].datatotal.total_data[0]);
+        var everySbjScore = msg[0].datadetail.report;
+        var everySbjNameObj = msg[0].datadetail.subjects;
+        //console.log();
+        var i=0;
+        var everySbjName = [];
+        for(i=0;i<total/100;i++){
+            everySbjName[i] = everySbjNameObj[i];
         }
-    ];
+        everySbjName[i] = "平均分";
+        everySbjScore[i] = parseFloat(msg[0].datatotal.total_data[1]);
+        console.log(everySbjName);
 
-    //雷达图
-    var radarChartData = {
-		labels: ["a", "b", "c", "d", "e", "f"],
-		datasets: [{
-            label: "scoreAnalyze",
-            fillColor: "rgba(1,70,138,0.5)",
-            strokeColor: "rgba(1,70,138,0.6)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "rgba(1,70,138,0.6)",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(1,70,138,0.6)",
-            data: [65,88,90,76,56,99]
- 
-		}]
-	};
-	
-    //排名统计
-    var lineChartData = {
-        labels : ["大一上","大一下"],
-        datasets : [{
-            label: "My First dataset",
-            fillColor : "rgba(220,220,220,0.2)",
-            strokeColor : "rgba(1,70,138,0.8)",
-            pointColor : "rgba(1,70,138,0.9)",
-            pointStrokeColor : "#fff",
-            pointHighlightFill : "#fff",
-            pointHighlightStroke : "rgba(220,220,220,1)",
-            data : [10,22]
-        }]
+        //展示总成绩数字
+        $(".first .totalScore h2")[0].innerHTML = userScore;
+
+        //首页加载图表
+        //总成绩
+        var doughnutData = [
+            {
+                value: userScore,
+                label: "我的总分",
+                color:"#F7464A",
+                highlight: "#FF5A5E",
+            },{
+                value: total-userScore,
+                color: "#4D5360",
+                highlight: "#616774",
+            }
+        ];
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
+            responsive : true
+        });
+
+        //展示排名
+        var wid = (parseInt(msg[1].class_rank)/parseInt(msg[1].class_nums))*100;
+        console.log(wid);
+        $(".third .num h3").text(msg[1].class_rank+"/"+msg[1].class_nums);
+        $(".third .percent .color").width(wid + "%");
+
+        //加载分数
+        //各科成绩
+        var barChartData = {
+            labels : everySbjName,
+            datasets : [
+                {
+                    fillColor : "#F7464A",
+                    strokeColor : "#F7464A",
+                    highlightFill: "#FF5A5E",
+                    highlightStroke: "#FF5A5E",
+                    data : everySbjScore,
+                    label:"我的得分",
+                },
+                {
+                    fillColor : "#4D5360",
+                    strokeColor : "#4D5360",
+                    highlightFill: "#616774",
+                    highlightStroke: "#616774",
+                    data : [100,100,100,100,100,100,100],
+                    label :"我的得分",
+                }
+            ]
+        };
+
+        var ctx = document.getElementById("canvas1").getContext("2d");
+        window.myBar = new Chart(ctx).Bar(barChartData, {
+            responsive : true
+        });
+    };
+    function getTotalScore(id,term){
+        $.ajax({
+            type:"get",
+            url:"/self",
+            data:{
+                "username":id,
+                "term":term,
+                "parameter":"report_card"
+            },
+            dataType:"json",
+            success:function(msg){
+                addTotalScore(msg);
+            },
+            error:function(xml){
+                console.log(xml.status);
+            }
+        });
+    };
+
+    //学科分析
+    function addAnalyze(msg){
+        var everySbjScore = msg.datadetail.report;
+        var everySbjName = msg.datadetail.subjects;
+        //雷达图
+        var radarChartData = {
+            labels: everySbjName,
+            datasets: [{
+                label: "scoreAnalyze",
+                fillColor: "rgba(220,220,220,0.5)",
+                strokeColor: "#F7464A",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#F7464A",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "#FF5A5E",
+                data: everySbjScore
+    
+            }]
+        };
+        window.myRadar = new Chart(document.getElementById("subject").getContext("2d")).Radar(radarChartData,{
+            responsive: true,
+            pointLabelFontSize: 13,
+        });
+        var best = msg.weak_best.best;
+        var weak = msg.weak_best.weak;
+        //console.log($(".fifth .adv h5"));
+        for(var i=0;i<best.length;i++){
+            $(".fifth .adv .sbj h6")[i].innerHTML = msg.weak_best.best[i][0];
+        };
+        for(var i=0;i<weak.length;i++){
+            $(".fifth .disAdv .sbj h6")[i].innerHTML = msg.weak_best.weak[i][0];
+        };
+    };
+    function getAnalyze(id,term) {
+        $.ajax({
+            type:"get",
+            url:"/self",
+            data:{
+                "username":id,
+                "term":term,
+                "parameter":"weak_and_best"
+            },
+            dataType:"json",
+            success:function(msg){
+                addAnalyze(msg);
+            },
+            error:function(xml){
+                console.log(xml.status);
+            }
+        });
+    };
+
+    //排名曲线
+    function addRank(msg) {
+        console.log(msg.class_rank);
+        var termName = ['大一上学期', '大一下学期', '大二上学期', '大二下学期', '大三上学期', '大三下学期', '大四上学期', '大四下学期'];
+        var termNameHave = new Array;
+        var l = Object.keys(msg.class_rank).length;
+        for(var i=0;i<l;i++){
+            termNameHave[i] = termName[i];
+        };
+        //console.log(termNameHave);
+        //排名统计
+        var lineChartData = {
+            labels : termNameHave,
+            datasets : [{
+                fillColor : "rgba(220,220,220,0.2)",
+                strokeColor : "#F7464A",
+                pointColor : "rgba(220,220,220,0.2)",
+                pointStrokeColor : "#F7464A",
+                pointHighlightFill : "#fff",
+                pointHighlightStroke : "#FF5A5E",
+                data : msg.class_rank
+            }]
+        }
+        var ctx = document.getElementById("line").getContext("2d");
+        window.myLine = new Chart(ctx).Line(lineChartData, {
+            responsive: true,
+            scaleFontSize : 20,
+        });
+        if((msg.class_rank[l-1]>msg.class_rank[l-2])>=0){
+            $(".seventh .compare .type")[0].innerHTML = "进步";
+            $(".seventh .compare .num")[0].innerHTML = parseInt(msg.class_rank[l-1])-parseInt(msg.class_rank[l-2]);
+        }else{
+            $(".seventh .compare .type")[0].innerHTML = "退步";
+            $(".seventh .compare .num")[0].innerHTML = parseInt(msg.class_rank[l-2])-parseInt(msg.class_rank[l-1]);
+        };
     }
+    function getRank(id,term){
+        $.ajax({
+            type:"get",
+            url:"/self",
+            data:{
+                "username":id,
+                "term":term,
+                "parameter":"progress"
+            },
+            dataType:"json",
+            success:function(msg){
+                addRank(msg);
+            },
+            error:function(xml){
+                console.log(xml.status);
+            }
+        });
+    };
 
-    //总成绩
-    var ctx = document.getElementById("chart-area").getContext("2d");
-	window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
-        responsive : true
+    //加载时间选择下拉框
+    $.customSelect({
+        identifier: 'demo',
+        selector: '#countrySelect',
+        placeholder: '大一上学期',
+        options: [
+            ['1', "", '大一上学期'],
+            ['2', "", '大一下学期'],
+            ['3', "", '大二上学期'],
+            ['4', "", '大二下学期'],
+            ['5', "", '大三上学期'],
+            ['6', "", '大三下学期'],
+            ['7', "", '大四上学期'],
+            ['8', "", '大四下学期']
+        ],
+        template: "<div class='jqcs_option' data-select-value='$0' style='background-image:url($1);'>$2</div>"
     });
 
-    //各科成绩
-    var ctx = document.getElementById("canvas1").getContext("2d");
-    window.myBar = new Chart(ctx).Bar(barChartData, {
-        responsive : true
+    //加载用户信息下拉框
+    //详细用户信息
+    var userIfo = $(".userIfo");
+    //设置位置
+    userIfo.css("left",window.innerWidth-330);
+    userIfo.hide();
+    //移入显示
+    var userHead = $(".navbar .right img");
+    userHead.mouseenter(function () { 
+        userIfo.slideDown();
+        userHead.attr("src","/static/img/user-fill(white).png");
+    });
+    //移除隐藏
+    $(".container").mouseenter(function(){
+        userIfo.slideUp();
+        userHead.attr("src","/static/img/user-line(white).png");
+    })
+
+    //获取用户信息
+    $.ajax({
+        type:"get",
+        url:"/studentself",
+        data:{
+            "username":id,
+        },
+        success:function(msg){
+           
+            //是否班长显示内容不同
+            if(msg[0] === 1){
+                
+            }else{
+                $($(".nav-item")[3]).remove();
+            };
+            
+            
+            //显示用户信息
+            $(".userIfo h1").text(msg[1].message[0][1]);
+            $(".userIfo h3").text(msg[1].message[0][2]);
+            $(".userIfo h2").text(msg[1].message[0][0]);
+            
+            //退出
+            $(".logOut").click(function(){
+                $.ajax({
+                    type: "get",
+                    url: "/self",
+                    data: {
+                        "username":id,
+                        "status":"201",
+                    },
+                    success: function (response) {
+                        if(response === "success"){
+                            window.location.href = "/";
+                        };
+                    },
+                    error:function(xml){
+                        console.log(xml.status);
+                    }
+                });
+            })
+
+            //年段不同显示不同数量的考试
+            for(var i=8;i>=msg[2];i--){
+                $($(".jqcs_option")[i]).remove();
+            };
+
+            //页面加载后请求总成绩
+            getTotalScore(id,term);
+        },
+        error:function(xml){
+            console.log(xml.status);
+        }
     });
 
-    //雷达图
-    window.myRadar = new Chart(document.getElementById("subject").getContext("2d")).Radar(radarChartData,{
-        responsive: true,
-        pointLabelFontSize: 25,
-    });
-
-    //排名折线
-    var ctx = document.getElementById("line").getContext("2d");
-    window.myLine = new Chart(ctx).Line(lineChartData, {
-        responsive: true,
-        scaleFontSize : 25,
-    });
-
-    //$(".first").hide();
+    //主页显示
+    $(".first").show();
     $(".second").hide();
-    //$(".third").hide();
-    //$(".forth").hide();
+    $(".third").show();
+    $(".forth").show();
     $(".fifth").hide();
     $(".sixth").hide();
     $(".seventh").hide();
+
+    //点击学期
+    $(".jqcs_option").click(function(){
+        term = $('input#countrySelect')[0].value;
+        //选择学期后请求总成绩
+        console.log($(".sectionSel").children().children()[1].innerHTML);
+        if($(".sectionSel").children().children()[1].innerHTML === "成绩概览")
+            getTotalScore(id,term);
+        else if($(".sectionSel").children().children()[1].innerHTML === "学科分析")
+            getAnalyze(id,term);
+        else if($(".sectionSel").children().children()[1].innerHTML === "排名曲线")
+            getRank(id,term);
+    });
+
+    //点击项目切换
+        var page = $(".nav-item");
+        $(page[0]).addClass("sectionSel");
+
+        //成绩概览
+        $(page[0]).click(function(){
+            page.removeClass("sectionSel");
+            $(page[0]).addClass("sectionSel");
+            $(".second").hide();
+            $(".fifth").hide();
+            $(".sixth").hide();
+            $(".seventh").hide();
+            $(".first").fadeIn(300);
+            $(".third").fadeIn(300);
+            $(".forth").fadeIn(300);
+            page.css("background-color","#263238");
+            page.find("a").css("color","#ABB1B7");
+            $(page[0]).css("background-color","rgba(255,255,255,.1)");
+            $(page[0]).find("a").css("color","white");
+            
+            //获取总成绩
+            var term = $('input#countrySelect')[0].value;
+            if(term === "")
+                term = "1";
+            getTotalScore(id,term);
+        });
+
+        //学科分析
+        $(page[1]).click(function(){
+            page.removeClass("sectionSel");
+            $(page[1]).addClass("sectionSel");
+            $(".first").hide();
+            $(".third").hide();
+            $(".forth").hide();
+            $(".sixth").hide();
+            $(".seventh").hide();
+            $(".second").fadeIn(300);
+            $(".fifth").fadeIn(300);
+            page.css("background-color","#263238");
+            page.find("a").css("color","#ABB1B7");
+            
+            $(page[1]).css("background-color","rgba(255,255,255,.1)");
+            //获取请求的学期
+            var term = $('input#countrySelect')[0].value;
+            if(term === "")
+                term = "1";
+            //获取优劣势
+            getAnalyze(id,term);
+        });
+
+        //排名曲线
+        $(page[2]).click(function(){
+            page.removeClass("sectionSel");
+            $(page[2]).addClass("sectionSel");
+            $(".first").hide();
+            $(".second").hide();
+            $(".third").hide();
+            $(".forth").hide();
+            $(".fifth").hide();
+            $(".sixth").fadeIn(300);
+            $(".seventh").fadeIn(300);
+            page.css("background-color","#263238");
+            page.find("a").css("color","#ABB1B7");
+            $(page[2]).css("background-color","rgba(255,255,255,.1)");
+            $(page[2]).find("a").css("color","white");
+
+            //获取请求的学期
+            var term = $('input#countrySelect')[0].value;
+            if(term === "")
+                term = "1";
+            //获取进步排名
+            getRank(id,term);
+    })
+    
+        //班长视图
+        $(page[3]).click(function(){
+        window.location.href = "/enterMointer";
+    })
 
 </script>
 

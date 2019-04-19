@@ -1,176 +1,129 @@
-.firBlock,
-.secBlock,
-.thiBlock,
-.forBlock{
+.main{
     display: flex;
     position: relative;
     width: 100%;
+    top: 8vh;
+    height: 92vh;
+    background: #e0e0e0;
 }
 
-.firBlock{
-    height: 350px;
-    top: 16vh;
-    justify-content: center;
-    z-index: 1;
-}
-
-.firBlock .container{
-    justify-content: space-between;
-}
-
-.firBlock .secContainer{
+.mask{
     display: flex;
     height: 100%;
-    width: 80%;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.firBlock .resent,
-.firBlock .userIfo{
-    display: flex;
-    height: 100%;
-    background-color: white;
-    justify-content: center;
-}
-
-.firBlock .resent{
-    width: 79%;
-}
-
-.firBlock .resent .head,
-.firBlock .resent .bottom{
     width: 100%;
-}
-
-.firBlock .userIfo{
-    width: 19%; 
-}
-
-.firBlock .userIfo .head{
-    display: flex;
-    width: 100%;
-    height: 10%;
+    background-color: #2c3438;
     justify-content: center;
-}
-
-.firBlock .userIfo .head img{
-    height: 100%;
-}
-
-.firBlock .userIfo .body{
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
-.thiBlock{ 
-    top: 27vh;
-    height: 500px;
-}
-
-.thiBlock .container{
-    justify-content: space-between;
-}
-
-.thiBlock .left{
+.welcome{
     display: flex;
-    height: 100%;
-    width: 40%;
+    width: 90%;
+    height: 50%;
     flex-direction: column;
     justify-content: center;
-    align-items: stretch;
-    background: #b4b4b4;
+    align-items: center;
 }
 
-.thiBlock .left .title,
-.thiBlock .left .choice{
-    margin-left: 50px;
+.welcome h1{
+    font-size: 50px;
+    letter-spacing: 10px;
+    color: white;
 }
 
-.thiBlock .left .choice{
+.welcome .start{
+    width: 16%;
+    height: 16%;
+    color: white;
+    background-color: #e7e6e650;
+    border-radius: 8px;
+    border: 2px rgb(185, 185, 185) solid;
+    font-size: 20px;
+    letter-spacing: 5px;
+    font-weight: 400;
+}
+
+.logWindow{
     display: flex;
-    position: relative;
-    top: 30px;
-    width: 70%;
-    justify-content: space-between;
-}
-
-.thiBlock .left .select{
-    width: 70%;
-}
-
-.thiBlock .left select{
-    width: 100%;
-}
-
-.thiBlock .left .btn{
-    width: 20%;
-}
-
-.thiBlock .right{
-    height: 100%;
-    width: 60%;
-}
-
-.thiBlock .right img{
-    height: 100%;
-    width: 100%;
-}
-
-.forBlock{
-    top: 33vh;
-    height: 500px;
-}
-
-.forBlock .container{
-    justify-content: space-between;
-}
-
-.forBlock .left{
-    height: 100%;
-    width: 60%;
-}
-
-.forBlock .left img{
-    height: 100%;
-    width: 100%;
-}
-
-.forBlock .right{
-    display: flex;
-    height: 100%;
-    width: 40%;
-    flex-direction: column;
-    align-items: flex-end;
+    width: 30%;
+    height: 100%; 
     justify-content: center;
-    background: #b4b4b4;
+    align-items: center;
 }
 
-.forBlock .right .title,
-.forBlock .right .choice{
-    text-align: right;
-    margin-right: 50px;
+.log{
+    margin-left: 30px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 70%;
+    margin-right: 30px;
 }
 
-.forBlock .right .choice{
+.log .title{
     display: flex;
-    position: relative;
-    top: 30px;
-    width: 70%;
-    justify-content: space-between;
+    font-size: 35px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #2c3438;
+    align-self: flex-start;
+    margin-bottom: 10px;
 }
 
-.forBlock .right .select{
-    width: 70%;
-}
 
-.forBlock .right select{
+.input-1,
+.input-2{
+    display: flex;
     width: 100%;
+    height: 35px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    color: #e0e0e0;
+    transition: all 400ms ease;
 }
 
-.forBlock .right .btn{
-    width: 20%;
+.input-1{
+    margin-top: 20px;
 }
 
+.input-2{
+    margin-top: 10px;
+}
+
+.input-1:hover,
+.input-2:hover{
+    border: 1px solid #01468a;
+}
+
+.input-1 .username,
+.input-2 .password{
+    width: 100%;
+    border: 0;
+    border-radius: 8px;
+    outline: 0;
+    font-size: 15px;
+    padding-left: 8px; 
+}
+
+.btn{
+    margin-top: 40px;
+    height: 10%;
+    width: 50%;
+    background-color: #2c34389c;
+    border-radius: 20px;
+    color: #d9d9d9;
+    outline: none;
+    border: 2px #505e65 solid;
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 18px;
+    transition: all 400ms ease;
+    
+}
+
+.btn:hover{
+    color: white;
+    background-color: #2c3438ad;
+}

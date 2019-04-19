@@ -1,0 +1,270 @@
+.nav{
+    margin-top: 8vh;
+    height: 92vh;
+    z-index: 1;
+}
+
+.container{
+    flex-direction: column;
+    align-items: center;
+}
+
+.section{
+    border-radius: 4px;
+    transition: all 300ms;
+    -moz-transition: all 300ms;	/* Firefox 4 */
+    -webkit-transition: all 300ms;	/* Safari 和 Chrome */
+    -o-transition: all 300ms;	/* Opera */
+}
+
+.section:hover{
+    box-shadow: 0 0 10px 2px;
+}
+
+.firBlock{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 20%;
+}
+
+.firBlock .title{
+    margin: 0;
+}
+
+.firBlock .sth{
+    display: flex;
+    height: 90%;
+    width: 95%;
+    margin-top: 15px;
+    align-self: center;
+}
+
+.firBlock .sbj{
+    width: 95%;
+    height: 100%;
+    padding: 10px 0 10px 0;
+    font-size: 17px;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.144);
+    border: 1px #263238 solid;
+    border-radius: 15px;
+}
+
+.firBlock .sbjfocus{
+    background: #263238;
+    color: white;
+}
+
+.firBlock .sbj:focus{
+    outline: none;
+}
+
+.sbj:hover{
+    background: rgba(255, 255, 255, 0.425);
+}
+
+.container1{
+    display: flex;
+    height: 80%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.034);
+    justify-content: space-between;
+}
+
+.secBlock{
+    display: flex;
+    height: 100%;
+    width: 25%;
+    background-color: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.secBlock .text{
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.secBlock .text h2{
+    font-size: 25px;
+    font-weight: 400;
+    margin: 5px 0 0 0;
+}
+
+.secBlock .text span{
+    font-size: 35px;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.thiBlock{
+    display: flex;
+    width: 74%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.thiBlock .num{
+    display: flex;
+    height: 29%;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    background: white;
+}
+
+.thiBlock .num .part{
+    display: flex;
+    width: 20%;
+    height: 90%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.thiBlock .num h3{
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.thiBlock .num span{
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.thiBlock .percent{
+    display: flex;
+    height: 69%;
+    width: 100%;
+    background-color: white;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.thiBlock .percent .left{
+    display: flex;
+    height: 90%;
+    width: 8%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.thiBlock .percent h3{
+    display: flex;
+    margin: 0 0 5px 0;
+    font-size: 20px;
+    font-weight: 500;
+    align-self: flex-start;
+}
+
+.thiBlock .percent span{
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.thiBlock .max span{
+    color: #008400;
+}
+
+.thiBlock .min span{
+    color: #F7464A;
+}
+
+.thiBlock .percent .right{
+    display: flex;
+    height: 90%;
+    width: 660px;
+}
+
+.container2{
+    display: flex;
+    height: 80%;
+    width: 90%;
+    background-color: white;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.forBlock{
+    display: flex;
+    height: 15%;
+    width: 95%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.forBlock .title{
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+}
+
+.forBlock .sort{
+    display: flex;
+    width: 120px;
+    height: 35%;
+    background-color: rgba(0, 0, 0, 0.363);
+    align-items: center;
+}
+
+.forBlock .sort .id{
+    position: relative;
+    display: flex;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    background-color: rgb(150, 47, 47);
+}
+
+
+.forBlock .title h2{
+    margin: 0 0 0 0;
+    font-size: 30px;
+}
+
+.fifBlock{
+    display: flex;
+    height: 85%;
+    width: 99%;
+    background-color: white;
+    justify-content: center;
+    overflow-y:auto; /*控制Y方向的滚动条*/
+}
+
+.fifBlock table{
+    width: 100%;
+}
+
+.fifBlock thead{
+    color: aliceblue;
+    background-color: #263238;
+
+}
+
+.fifBlock table td{
+    text-align: center;
+}
+
+.fifBlock table td:hover{
+    background-color: rgba(0, 0, 0, 0.171);
+}
+
+.fifBlock table tr{
+    height: 50px;
+}
+
+.fifBlock table tr:hover{
+    background-color: rgba(0, 0, 0, 0.144);
+}
