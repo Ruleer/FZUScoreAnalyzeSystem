@@ -344,12 +344,12 @@
             responsive: true,
             scaleFontSize : 20,
         });
-        if((msg.class_rank[l-1]>msg.class_rank[l-2])>=0){
+        if((msg.class_rank[l]-msg.class_rank[l-1])>=0){
             $(".seventh .compare .type")[0].innerHTML = "进步";
-            $(".seventh .compare .num")[0].innerHTML = parseInt(msg.class_rank[l-1])-parseInt(msg.class_rank[l-2]);
+            $(".seventh .compare .num")[0].innerHTML = parseInt(msg.class_rank[l])-parseInt(msg.class_rank[l-1]);
         }else{
             $(".seventh .compare .type")[0].innerHTML = "退步";
-            $(".seventh .compare .num")[0].innerHTML = parseInt(msg.class_rank[l-2])-parseInt(msg.class_rank[l-1]);
+            $(".seventh .compare .num")[0].innerHTML = parseInt(msg.class_rank[l-1])-parseInt(msg.class_rank[l]);
         };
     }
     function getRank(id,term){
